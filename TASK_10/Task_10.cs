@@ -62,4 +62,6 @@ Flag_correct=true;
 }
 }
 // блок выполнения задания
-Console.WriteLine(Number_str);
+int len=0;
+len=Number_str.Length();
+Console.WriteLine(len);
