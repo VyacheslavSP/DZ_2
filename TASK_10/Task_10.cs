@@ -29,7 +29,7 @@ var arr = Regex.Matches(Temp_numbers, @"-?\d+(\.\d+)?")
     .ToArray();
 if (arr.Length > 1)
 {
-  Console.WriteLine("Вы ввели больше одного числа");
+  Console.WriteLine("Вы ввели больше одного числа или дробное число");
   Flag_correct=false;
 }
 else
@@ -63,5 +63,33 @@ Flag_correct=true;
 }
 // блок выполнения задания
 int len=0;
-len=Number_str.Length();
-Console.WriteLine(len);
+Byte correct_len =0;
+
+len=Number_str.Length;
+if(Number_str.IndexOf(',')!=-1)       //если дробное которое записали через точку
+  {
+    Console.WriteLine("Вы ввели дробное число");
+}
+else
+{
+  if(Number_str.IndexOf('-')!=-1) //отрицательное
+    {
+    correct_len=4;        // корректная длина строки 4 символа
+    }
+    else
+    {
+    correct_len=3;        // корректная длина строки 3 символа
+    }
+}
+if (len!=correct_len)
+{
+  Console.WriteLine("Введено некорректное число");
+}
+else
+{
+int Correct_number= int.Parse(Number_str);
+int tmp_num=Correct_number/10;
+float RETURN_NUM=tmp_num%10;
+RETURN_NUM=Math.Abs(RETURN_NUM); // модуль для корректного выведения второй цифры орицательного числа
+Console.WriteLine(RETURN_NUM);
+}
